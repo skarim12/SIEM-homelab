@@ -3,6 +3,8 @@ Snort NIDS/NIPS Homelab — Network Intrusion Detection & Prevention System
 > A hands-on cybersecurity homelab project configuring Snort 3 on Ubuntu Linux and Windows 11, simulating real-world network attacks, and building toward a full defense-in-depth architecture.
 
 ---
+Here is the link of the project on Medium: 
+https://medium.com/p/6ae7c99011e4?postPublishedType=initial
 
 ## Table of Contents
 
