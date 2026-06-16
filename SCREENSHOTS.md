@@ -82,14 +82,11 @@
 ![Screenshot 27](images/Screenshot%202026-06-14%20at%206.32.png)
 
 ### Screenshot 28
-![Screenshot 28](images/Screenshot%202026-06-14%20at%206.40.png)
-
-### Screenshot 29
 ![Screenshot 29](images/Screenshot%202026-06-14%20at%206.56.png)
 
-### Screenshot 30
+### Screenshot 29
 ![Screenshot 30](images/1*Ebi8mgRb9EYqLH-4g7M-Gg.png)
 
-### Screenshot 31
+### Screenshot 30
 ![Screenshot 31](images/1*h-USlTYnUj9pYSddcZwkdg.png)
 
