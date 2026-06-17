@@ -1,8 +1,8 @@
-# 🔥 pfSense Firewall & Internal LAN Lab
+#  pfSense Firewall & Internal LAN Lab
 
 **Home Lab | Network Security | Firewall Configuration | IDS Prep**
 
-📝 **Full write-up on Medium:** [pfSense Configuration](https://medium.com/@karimsaminur123/pfsense-configuration-fdbaabd73084?postPublishedType=initial)
+ **Full write-up on Medium:** [pfSense Configuration](https://medium.com/@karimsaminur123/pfsense-configuration-fdbaabd73084?postPublishedType=initial)
 
 ---
 
@@ -203,19 +203,19 @@ Applied rule → changes saved.
 
 | Test | Result |
 |------|--------|
-| Ping `8.8.8.8` (Google DNS) from Ubuntu | ❌ All packets lost |
-| Ping `8.8.8.8` from Kali | ❌ All packets lost |
-| Ping `8.8.8.8` from Metasploitable 2 | ❌ All packets lost |
-| Ping `8.8.8.8` from Metasploitable 3 | ❌ All packets lost |
-| Ping internal LAN IPs (all VMs) | ✅ All successful |
+| Ping `8.8.8.8` (Google DNS) from Ubuntu |  All packets lost |
+| Ping `8.8.8.8` from Kali |  All packets lost |
+| Ping `8.8.8.8` from Metasploitable 2 |  All packets lost |
+| Ping `8.8.8.8` from Metasploitable 3 |  All packets lost |
+| Ping internal LAN IPs (all VMs) |  All successful |
 
 ### With Firewall Rule Disabled
 
 | Test | Result |
 |------|--------|
-| Ping `facebook.com` | ✅ Successful |
-| Ping `google.com` | ✅ Successful |
-| Ping `yahoo.com` | ✅ Successful |
+| Ping `facebook.com` |  Successful |
+| Ping `google.com` |  Successful |
+| Ping `yahoo.com` |  Successful |
 
 This confirmed the firewall rule was functioning correctly — internal traffic was unaffected while outbound traffic was fully blocked.
 
