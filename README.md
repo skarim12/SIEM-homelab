@@ -1,5 +1,6 @@
 
-Snort NIDS/NIPS Integration with pfSense CE
+# Snort NIDS/NIPS Integration with pfSense CE
+
 Overview
 This project documents the integration of Snort 4.1.6 as a Network Intrusion Detection and Prevention System (NIDS/NIPS) into a pfSense CE 2.7.2 firewall. The lab simulates a real-world security monitoring environment where a perimeter firewall is paired with an intrusion prevention system to detect and block unauthorized network activity. All VMs are running on UTM on Apple Silicon M3.
 
