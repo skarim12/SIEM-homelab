@@ -42,7 +42,7 @@ The lab simulates a layered security environment where pfSense provides stateful
 | Internal Network | 192.168.1.0/24      |
 | Attacker         | Host macOS          |
 | Target           | Metasploitable 2    |
-| Management VM    | Ubuntu Server       |
+| Management VM    | Kali Server         |
 
 ---
 
