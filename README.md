@@ -1,5 +1,7 @@
 # Windows 11 Endpoint Monitoring Lab — Sysmon + Splunk (ARM64)
 
+Full Report with Screenshots: https://medium.com/@karimsaminur123/splunk-with-microsoft-sysmon-and-windows-security-logs-684ee12b57cb
+
 Deploying Sysmon and the Splunk Universal Forwarder on a Windows 11 ARM64 VM to capture endpoint telemetry (process creation, network connections, registry activity, and authentication events), forwarding it into a self-hosted Splunk Enterprise instance for detection and IAM-focused monitoring.
 
 This project extends an existing home SOC lab (pfSense-segmented network, Snort IDS, Splunk Enterprise on Docker) by adding host-based visibility to complement existing network-layer detection.
@@ -117,18 +119,6 @@ An SMB authentication brute-force was run from Kali against the Windows 11 host 
 
 Resulting authentication activity (`EventCode=4624` / `4625`) was confirmed flowing into Splunk in real time, validating the full collection pipeline from attack traffic to indexed, searchable event data.
 
-## IAM Dashboard
-
-A Splunk dashboard was built to track authentication activity relevant to identity and access management:
-
-- Successful vs. failed logins over time
-- Top accounts by failed login count
-- Account lockout events (`EventCode=4740`)
-- Privileged logon activity (`EventCode=4672`)
-- Logon type breakdown (interactive, network, RDP, etc.)
-- Failed logins by source address
-
-See [`dashboard.xml`](./dashboard.xml) for the full Simple XML source.
 
 ## MITRE ATT&CK Hunt Queries
 
@@ -141,11 +131,8 @@ See [`dashboard.xml`](./dashboard.xml) for the full Simple XML source.
 | T1078 | Valid Accounts, off-hours logon | Security (4624) |
 | T1547.001 | Registry Run key persistence | Sysmon (Event ID 13) |
 
-See [`hunt-queries.md`](./hunt-queries.md) for full SPL and detection logic per technique.
-
 ## Screenshots
 
-*(Add screenshots: Sysmon service running, Splunk search confirming Sysmon events, IAM dashboard, NetExec attack output, Splunk detection results)*
 
 ## Lessons Learned
 
