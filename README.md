@@ -1,5 +1,7 @@
 # Windows 11 Endpoint Monitoring Lab — Sysmon + Splunk (ARM64)
 
+Full Report with Screenshots: https://medium.com/@karimsaminur123/splunk-with-microsoft-sysmon-and-windows-security-logs-684ee12b57cb
+
 Deploying Sysmon and the Splunk Universal Forwarder on a Windows 11 ARM64 VM to capture endpoint telemetry (process creation, network connections, registry activity, and authentication events), forwarding it into a self-hosted Splunk Enterprise instance for detection and IAM-focused monitoring.
 
 This project extends an existing home SOC lab (pfSense-segmented network, Snort IDS, Splunk Enterprise on Docker) by adding host-based visibility to complement existing network-layer detection.
@@ -145,7 +147,6 @@ See [`hunt-queries.md`](./hunt-queries.md) for full SPL and detection logic per 
 
 ## Screenshots
 
-*(Add screenshots: Sysmon service running, Splunk search confirming Sysmon events, IAM dashboard, NetExec attack output, Splunk detection results)*
 
 ## Lessons Learned
 
