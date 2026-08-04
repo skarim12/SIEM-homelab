@@ -119,18 +119,6 @@ An SMB authentication brute-force was run from Kali against the Windows 11 host 
 
 Resulting authentication activity (`EventCode=4624` / `4625`) was confirmed flowing into Splunk in real time, validating the full collection pipeline from attack traffic to indexed, searchable event data.
 
-## IAM Dashboard
-
-A Splunk dashboard was built to track authentication activity relevant to identity and access management:
-
-- Successful vs. failed logins over time
-- Top accounts by failed login count
-- Account lockout events (`EventCode=4740`)
-- Privileged logon activity (`EventCode=4672`)
-- Logon type breakdown (interactive, network, RDP, etc.)
-- Failed logins by source address
-
-See [`dashboard.xml`](./dashboard.xml) for the full Simple XML source.
 
 ## MITRE ATT&CK Hunt Queries
 
@@ -142,8 +130,6 @@ See [`dashboard.xml`](./dashboard.xml) for the full Simple XML source.
 | T1021.002 | SMB / lateral movement | Sysmon (Event ID 3) |
 | T1078 | Valid Accounts, off-hours logon | Security (4624) |
 | T1547.001 | Registry Run key persistence | Sysmon (Event ID 13) |
-
-See [`hunt-queries.md`](./hunt-queries.md) for full SPL and detection logic per technique.
 
 ## Screenshots
 
