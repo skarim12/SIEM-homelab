@@ -1,0 +1,166 @@
+<dashboard version="1.1">
+  <label>IAM - Authentication Monitoring</label>
+  <description>Login attempts, failures, lockouts, and privileged access tracking</description>
+
+  <row>
+    <panel>
+      <single>
+        <title>Total Successful Logins (24h)</title>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4624 earliest=-24h</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0x53a051"]</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Total Failed Logins (24h)</title>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4625 earliest=-24h</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xd93f3c"]</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Account Lockouts (24h)</title>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4740 earliest=-24h</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0xf58f39"]</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Privileged Logons (24h)</title>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4672 earliest=-24h</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="rangeColors">["0x6a5fc1"]</option>
+      </single>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Login Activity Over Time</title>
+      <chart>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security (EventCode=4624 OR EventCode=4625)
+| eval status=if(EventCode=4624,"Success","Failed")
+| timechart span=15m count by status</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.fieldColors">{"Success": 0x53a051, "Failed": 0xd93f3c}</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Top Accounts with Failed Logins</title>
+      <table>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4625
+| stats count as "Failed_Attempts" by Account_Name
+| where Account_Name!="-" AND Account_Name!="ANONYMOUS LOGON"
+| sort -Failed_Attempts
+| head 10</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Logon Type Breakdown</title>
+      <chart>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4624
+| eval LogonTypeDesc=case(
+    Logon_Type=2,"2 - Interactive",
+    Logon_Type=3,"3 - Network",
+    Logon_Type=4,"4 - Batch",
+    Logon_Type=5,"5 - Service",
+    Logon_Type=7,"7 - Unlock",
+    Logon_Type=10,"10 - RemoteInteractive (RDP)",
+    Logon_Type=11,"11 - CachedInteractive",
+    1=1,"Other")
+| stats count by LogonTypeDesc</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Account Lockout Events</title>
+      <table>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4740
+| table _time, Account_Name, Caller_Computer_Name
+| sort -_time</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Privileged Logon Activity</title>
+      <table>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4672
+| table _time, Account_Name, Privilege_List
+| sort -_time</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <title>Sysmon Network Connections to SMB (445)</title>
+      <table>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Sysmon EventCode=3 DestinationPort=445
+| table _time, SourceIp, DestinationIp, DestinationPort
+| sort -_time</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Failed Logins by Source Address</title>
+      <table>
+        <search>
+          <query>index=main sourcetype=WinEventLog:Security EventCode=4625
+| where Source_Network_Address!="-" AND Source_Network_Address!=""
+| stats count by Source_Network_Address, Account_Name
+| sort -count</query>
+          <earliest>-24h</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+
+</dashboard>
