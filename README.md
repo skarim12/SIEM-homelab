@@ -186,15 +186,6 @@ Beyond the individual detections, this project surfaced several findings worth c
 2. **A correctly-configured control can still fail silently.** The registry auditing SACL was enabled and appeared correct, but pointed at the wrong security principal — a reminder that security controls need to be validated through actual testing, not just confirmed as "configured."
 3. **Detection and prevention are not the same thing.** Several techniques in this project (privileged logon activity, off-hours logons) are fundamentally detective controls — they observe and alert, but don't block anything on their own. Real prevention required separate, additional controls (logon-hour restrictions, reduced standing privilege, AppLocker rules) layered on top of detection.
 
-## Related Documentation
-
-- [`README.md`](./README.md) — original Sysmon/Splunk lab build, including the ARM64 driver troubleshooting
-- [`incident-response-playbook.md`](./incident-response-playbook.md) — the NIST 800-61-aligned response framework
-- [`incident-reports.md`](./incident-reports.md) — individual incident write-ups for all nine simulated attacks
-- [`mitre-attack-mapping.md`](./mitre-attack-mapping.md) — full technique-to-detection-to-response coverage table
-- [`alert-specifications.md`](./alert-specifications.md) — complete alert configuration (SPL, schedule, throttle, severity)
-- [`hunt-queries.md`](./hunt-queries.md) — standalone threat hunting queries by technique
-
 ## Tools Used
 
 Splunk Enterprise · Sysmon · Windows 11 · pfSense CE · Kali Linux · NetExec · Hydra · Flask · PowerShell · AppLocker · Windows Group Policy / Local Security Policy
